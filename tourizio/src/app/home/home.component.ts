@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { INDIA_STATES } from '../../data/destinations-data'; // This is the correct variable name
+import { ALL_COUNTRIES } from '../../data/destinations-data'; // Import new data
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,6 @@ import { INDIA_STATES } from '../../data/destinations-data'; // This is the corr
   styleUrl: './home.css'
 })
 export class HomeComponent {
-  // Use the correct variable name when getting the data
-  featuredStates = INDIA_STATES.slice(0, 3);
+  // Select the first 3 countries to feature on the homepage
+  featuredCountries = ALL_COUNTRIES.slice(0, 3);
 }

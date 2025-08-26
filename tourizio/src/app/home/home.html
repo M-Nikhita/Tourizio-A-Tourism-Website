@@ -8,16 +8,16 @@
 </div>
 
 <div class="container my-5">
-  <h2 class="text-center mb-4">Famous States</h2>
+  <h2 class="text-center mb-4">Featured Countries</h2>
   <div class="row">
-    <div *ngFor="let state of featuredStates" class="col-md-4 mb-4">
+    <div *ngFor="let country of featuredCountries" class="col-md-4 mb-4">
       <div class="card shadow-sm">
-        <a [routerLink]="['/destinations']" [queryParams]="{ state: state.state }">
-  <img [src]="state.image" class="card-img-top" [alt]="state.state">
-</a>
+        <a [routerLink]="['/destinations', country.name]">
+          <img [src]="country.image" class="card-img-top" [alt]="country.name">
+        </a>
         <div class="card-body">
-          <h5 class="card-title">{{ state.state }}</h5>
-          <p class="card-text">{{ state.description }}</p>
+          <h5 class="card-title">{{ country.name }}</h5>
+          <p class="card-text">{{ country.description }}</p>
         </div>
       </div>
     </div>
