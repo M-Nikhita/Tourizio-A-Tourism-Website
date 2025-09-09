@@ -76,7 +76,7 @@ export const ALL_COUNTRIES = [
         popularity: 4,
       },
       {
-        id: 108,
+        id: 109,
         name: 'Meenakshi Amman Temple',
         city: 'Madurai',
         state: 'Tamil Nadu',
@@ -86,7 +86,7 @@ export const ALL_COUNTRIES = [
         popularity: 5,
       },
       {
-        id: 109,
+        id: 108,
         name: 'Alleppey Backwaters',
         city: 'Alleppey',
         state: 'Kerala',

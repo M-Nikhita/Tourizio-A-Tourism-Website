@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ALL_COUNTRIES } from '../../data/destinations-data';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-country',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,FormsModule],
   templateUrl: './country.html',
   styleUrl: './country.css'
 })
@@ -17,6 +19,7 @@ export class CountryComponent implements OnInit {
   states: string[] = [];
   activeStateFilter: string | null = null;
   currentSortOrder: 'asc' | 'desc' | 'popularity' | null = null;
+  searchQuery: string = '';
 
   constructor(private route: ActivatedRoute) {}
 
@@ -34,7 +37,15 @@ export class CountryComponent implements OnInit {
       }
     });
   }
-
+  onSearch(): void {
+    if (this.searchQuery.trim() === '') {
+        this.filteredPlaces = [...this.allPlaces];
+    } else {
+        this.filteredPlaces = this.allPlaces.filter(place =>
+            place.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+    }
+}
   getPopularityText(popularity: number): string {
     if (popularity >= 5) {
       return 'Very Highly Visited';
