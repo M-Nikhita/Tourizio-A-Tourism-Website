@@ -51,3 +51,10 @@
     </div>
   </div>
 </div>
+<div class="popup-overlay" *ngIf="showWelcomePopup">
+  <div class="popup-card">
+    <h2 class="text-success">Login Successful!</h2>
+    <p>Welcome back! We're glad to see you again.</p>
+    <button class="btn btn-success mt-3" (click)="closePopup()">Continue Your Journey</button>
+  </div>
+</div>
