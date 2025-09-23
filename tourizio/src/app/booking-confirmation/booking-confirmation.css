@@ -1,0 +1,21 @@
+/* These styles ONLY apply when the user prints the page */
+@media print {
+  
+  /* Hide the action buttons */
+  .action-buttons {
+    display: none !important;
+  }
+
+  /* Remove the shadow from the card for a cleaner look */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #dee2e6 !important;
+  }
+
+  /* Optional: Hide the website's main navbar if you have one */
+  /* You will need to find its component selector, e.g., app-navbar */
+  /* app-navbar {
+    display: none !important;
+  } 
+  */
+}

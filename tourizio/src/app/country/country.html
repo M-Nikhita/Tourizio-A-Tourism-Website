@@ -47,7 +47,7 @@
               <span *ngFor="let star of getStarsArray(place.popularity)">⭐</span>
             </div>
           </div>
-          <a [routerLink]="['/book-tour']" class="btn btn-sm btn-primary ms-3">View Details</a>
+          <a [routerLink]="['/place-details', place.id]" class="btn btn-sm btn-primary ms-3">View Details</a>
         </div>
       </div>
     </div>

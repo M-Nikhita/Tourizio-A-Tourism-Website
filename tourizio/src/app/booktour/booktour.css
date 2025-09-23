@@ -1,0 +1,10 @@
+/* This rule targets the text color of the dropdown options */
+    select.form-select option {
+      color: #212529 !important;      /* Use a standard dark color for text */
+      background-color: #ffffff !important; /* Ensure the option background is white */
+    }
+    
+    /* This rule targets the text of the selected option shown when the dropdown is closed */
+    select.form-select {
+       color: #212529 !important;
+    }

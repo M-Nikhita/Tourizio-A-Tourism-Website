@@ -1,0 +1,87 @@
+<div *ngIf="placeDetails; else notFound">
+
+  <!-- ================================================================= -->
+  <!-- 1. IMAGE AT THE TOP (FULL WIDTH) -->
+  <!-- ================================================================= -->
+  <div class="row g-0">
+    <div class="col-12">
+      <!-- The image now spans the full width of the page -->
+      <img [src]="placeDetails.image" 
+           class="img-fluid w-100" 
+           style="object-fit: cover; height: 105vh;"
+           [alt]="placeDetails.name" 
+           onerror="this.onerror=null;this.src='https://placehold.co/1200x400?text=Image+Not+Found';">
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <!-- Header: Place Name -->
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h1 class="display-4">{{ placeDetails.name }}</h1>
+        <p class="lead text-muted">{{ placeDetails.city }}, {{ placeDetails.state }}</p>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- 2. DESCRIPTION & HOTELS SECTION -->
+    <!-- ================================================================= -->
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <p class="fs-5">{{ placeDetails.description }}</p>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <h2 class="text-center mb-4">Hotels & Resorts</h2>
+    <div class="row g-4 justify-content-center">
+      <!-- This loop dynamically creates a card for each hotel -->
+      <div class="col-md-6 col-lg-5" *ngFor="let hotel of placeDetails?.hotels">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title">{{ hotel.name }}</h5>
+              <!-- Star Rating -->
+              <div class="text-warning">
+                <span *ngFor="let i of getStars(hotel.rating)">&#9733;</span>
+              </div>
+            </div>
+            <p class="card-text text-muted mt-2">{{ hotel.description }}</p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0">
+            <span class="fw-bold fs-5 text-success">₹{{ hotel.price }}/night</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+    
+    <!-- ================================================================= -->
+    <!-- 3. BOOK NOW BUTTON AT THE BOTTOM -->
+    <!-- ================================================================= -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3 class="fw-light">Ready for an adventure?</h3>
+        <p class="lead">Book your trip to {{ placeDetails.name }} today!</p>
+        <a [routerLink]="['/book-tour']" 
+           [queryParams]="{ country: countryDetails.name, state: placeDetails.state, place: placeDetails.name }" 
+           class="btn btn-primary btn-lg mt-2">
+          Book Now
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- This will show if the URL is wrong and the place can't be found -->
+<ng-template #notFound>
+  <div class="container text-center my-5">
+    <h1 class="display-4">Destination Not Found</h1>
+    <p class="lead">We couldn't find the details for this location.</p>
+    <a routerLink="/" class="btn btn-primary">Back to Home</a>
+  </div>
+</ng-template>
+

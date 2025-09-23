@@ -1,0 +1,65 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- This is the section that will be printed or saved as a PDF -->
+      <div class="card shadow-sm" id="bookingConfirmationDetails">
+        <div class="card-header text-center bg-success text-white">
+          <h2 class="card-title mb-0">Booking Confirmed!</h2>
+          <p class="mb-0">Thank you for booking with Tourizio.</p>
+        </div>
+        <div class="card-body p-4" *ngIf="bookingDetails">
+          <h4 class="card-subtitle mb-3 text-muted">Your Itinerary</h4>
+          
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Full Name:</strong>
+              <span>{{ bookingDetails.name }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Email:</strong>
+              <span>{{ bookingDetails.email }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Phone:</strong>
+              <span>{{ bookingDetails.phone }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Destination:</strong>
+              <span>{{ bookingDetails.placeName }}, {{ bookingDetails.state }}, {{ bookingDetails.country }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Hotel:</strong>
+              <span>{{ bookingDetails.hotelName }}</span>
+            </li>
+             <li class="list-group-item d-flex justify-content-between">
+              <strong>Travel Dates:</strong>
+              <span>{{ bookingDetails.startDate }} to {{ bookingDetails.endDate }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <strong>Number of People:</strong>
+              <span>{{ bookingDetails.people }}</span>
+            </li>
+             <li class="list-group-item d-flex justify-content-between bg-light">
+              <strong class="text-primary">Total Price:</strong>
+              <strong class="text-primary">${{ bookingDetails.totalPrice }}</strong>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- These buttons will be hidden when the user prints the page -->
+      <div class="text-center mt-4 action-buttons">
+        <button class="btn btn-primary me-2" (click)="printConfirmation()">
+          Print / Save as PDF
+        </button>
+        <a routerLink="/book-tour" class="btn btn-secondary">
+          Make Another Booking
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+

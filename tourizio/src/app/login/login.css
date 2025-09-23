@@ -1,0 +1,45 @@
+.image-container {
+  height: 100vh;
+  /* You can replace this placeholder with a real image */
+  background-image: url('../../assets/images/explore.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.form-container {
+  width: 400px;
+  max-width: 400px;
+}
+/* Styles for the welcome popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.popup-card {
+  background:white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* A simple animation for the popup */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

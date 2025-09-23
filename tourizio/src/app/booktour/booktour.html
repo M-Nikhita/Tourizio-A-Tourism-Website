@@ -1,0 +1,149 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header text-center bg-primary text-white">
+          <h2 class="card-title mb-0">Book Your Tour</h2>
+        </div>
+        <div class="card-body">
+          <!-- Add novalidate to prevent default browser validation -->
+          <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" novalidate>
+
+            <!-- Country Dropdown -->
+            <div class="mb-3">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-select" id="country" formControlName="country" 
+                      [class.is-invalid]="bookingForm.get('country')?.invalid && bookingForm.get('country')?.touched">
+                <option value="" disabled selected>Select a Country</option>
+                <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+              </select>
+              <div *ngIf="bookingForm.get('country')?.invalid && bookingForm.get('country')?.touched" class="invalid-feedback">
+                Please select a country.
+              </div>
+            </div>
+
+            <!-- State Dropdown -->
+            <div class="mb-3">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" formControlName="state" [disabled]="!states.length" 
+                      [class.is-invalid]="bookingForm.get('state')?.invalid && bookingForm.get('state')?.touched">
+                <option value="">Select a State</option>
+                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+              </select>
+              <div *ngIf="bookingForm.get('state')?.invalid && bookingForm.get('state')?.touched" class="invalid-feedback">
+                Please select a state.
+              </div>
+            </div>
+
+            <!-- Destination Dropdown -->
+            <div class="mb-3">
+              <label for="placeName" class="form-label">Destination</label>
+              <select class="form-select" id="placeName" formControlName="placeName" [disabled]="!places.length" 
+                      [class.is-invalid]="bookingForm.get('placeName')?.invalid && bookingForm.get('placeName')?.touched">
+                <option value="">Select a Place</option>
+                <option *ngFor="let place of places" [value]="place.name">{{ place.name }}</option>
+              </select>
+              <div *ngIf="bookingForm.get('placeName')?.invalid && bookingForm.get('placeName')?.touched" class="invalid-feedback">
+                Please select a destination.
+              </div>
+            </div>
+
+            <!-- Hotel Dropdown -->
+            <div class="mb-3">
+              <label for="hotelName" class="form-label">Select Hotel</label>
+              <select class="form-select" id="hotelName" formControlName="hotelName" [disabled]="!hotels.length" 
+                      [class.is-invalid]="bookingForm.get('hotelName')?.invalid && bookingForm.get('hotelName')?.touched">
+                <option value="">Select a Hotel</option>
+                <option *ngFor="let hotel of hotels" [value]="hotel.name">
+                  {{ hotel.name }} - ${{ hotel.price }}
+                </option>
+              </select>
+              <div *ngIf="bookingForm.get('hotelName')?.invalid && bookingForm.get('hotelName')?.touched" class="invalid-feedback">
+                Please select a hotel.
+              </div>
+            </div>
+
+            <!-- Full Name Input -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name" 
+                     [class.is-invalid]="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched">
+              <div *ngIf="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched" class="invalid-feedback">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" formControlName="email" 
+                     [class.is-invalid]="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched">
+              <div *ngIf="bookingForm.get('email')?.invalid && bookingForm.get('email')?.touched" class="invalid-feedback">
+                <span *ngIf="bookingForm.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="bookingForm.get('email')?.errors?.['email']">Please enter a valid email.</span>
+              </div>
+            </div>
+
+            <!-- Phone Input -->
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" formControlName="phone" 
+                     [class.is-invalid]="bookingForm.get('phone')?.invalid && bookingForm.get('phone')?.touched">
+              <div *ngIf="bookingForm.get('phone')?.invalid && bookingForm.get('phone')?.touched" class="invalid-feedback">
+                <span *ngIf="bookingForm.get('phone')?.errors?.['required']">Phone number is required.</span>
+                <span *ngIf="bookingForm.get('phone')?.errors?.['pattern']">Please enter a valid 10-digit number.</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Start Date Input -->
+              <div class="col-md-6 mb-3">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="startDate" formControlName="startDate" 
+                       [class.is-invalid]="bookingForm.get('startDate')?.invalid && bookingForm.get('startDate')?.touched">
+                <div *ngIf="bookingForm.get('startDate')?.invalid && bookingForm.get('startDate')?.touched" class="invalid-feedback">
+                  Start Date is required.
+                </div>
+              </div>
+
+              <!-- End Date Input -->
+              <div class="col-md-6 mb-3">
+                <label for="endDate" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="endDate" formControlName="endDate" 
+                       [class.is-invalid]="bookingForm.get('endDate')?.invalid && bookingForm.get('endDate')?.touched">
+                <div *ngIf="bookingForm.get('endDate')?.invalid && bookingForm.get('endDate')?.touched" class="invalid-feedback">
+                  End Date is required.
+                </div>
+              </div>
+
+              <!-- Number of People Input -->
+              <div class="col-md-6 mb-3">
+                <label for="people" class="form-label">Number of People</label>
+                <input type="number" class="form-control" id="people" formControlName="people" min="1" 
+                       [class.is-invalid]="bookingForm.get('people')?.invalid && bookingForm.get('people')?.touched">
+                <div *ngIf="bookingForm.get('people')?.invalid && bookingForm.get('people')?.touched" class="invalid-feedback">
+                  <span *ngIf="bookingForm.get('people')?.errors?.['required']">Number of people is required.</span>
+                  <span *ngIf="bookingForm.get('people')?.errors?.['min']">Must be at least 1.</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Total Price Display -->
+            <div class="mt-4" *ngIf="totalPrice > 0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold text-primary">Total Price: ${{ totalPrice }}</h5>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">Confirm Booking</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

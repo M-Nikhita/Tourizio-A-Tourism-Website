@@ -1,0 +1,18 @@
+
+.auth-container .row {
+  min-height: 100vh;
+}
+
+.image-container {
+  height: 100%;
+  min-height: 100vh;
+  /* You can replace this placeholder with a real image */
+  background-image: url('../../assets/images/adventure.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+}
