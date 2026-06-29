@@ -10,7 +10,7 @@ A responsive tourism discovery and booking platform built with Angular. Browse c
 - **Place details view** — see descriptions, pricing, and hotel options for each destination
 - **Multi-step booking flow** — select country → state → place → hotel, with live total price calculation based on number of travelers
 - **Booking confirmation page** — review submitted booking details, with a print/save-as-PDF option
-- **Login & signup pages** — client-side form flows with validation (see [Current Scope](#current-scope) for what this does and doesn't include)
+- **Login & signup pages** — client-side form validation for a complete user flow
 - **Fully responsive UI** — built with Bootstrap 5
 
 ## Tech Stack
@@ -64,6 +64,8 @@ User → Angular Router → Standalone Components → static data import
 ```
 
 Booking details are passed between the booking form and the confirmation page via Angular Router **query parameters** — nothing is persisted to a server or database. Refreshing or revisiting the confirmation page directly (without coming from the form) will show no data, since it's read live from the URL.
+
+Login and signup use Angular Reactive Forms for client-side validation; authentication against a real user store is part of the planned backend integration (see [Roadmap](#roadmap)).
 
 ## Prerequisites
 
@@ -124,17 +126,6 @@ Runs the unit test suite via Karma in a Chrome browser instance.
 4. Click into a **place** to see details and available hotels.
 5. Click **Book Tour**, fill in traveler details, dates, and select a hotel — the total price updates live based on hotel rate × number of travelers.
 6. Submit to reach the **Booking Confirmation** page, where you can print or save the confirmation as a PDF via the browser's print dialog.
-
-## Current Scope
-
-This project was built to demonstrate frontend architecture, routing, and reactive forms in Angular. A few things to know if you're evaluating or extending it:
-
-- **No backend** — all data (countries, places, hotels) is static and hardcoded in `destinations-data.ts`; nothing is fetched from an API
-- **Login/Signup are UI-only** — forms validate client-side, but there's no real authentication, no user accounts, and no session persistence. Submitting either form does not check credentials against any stored data
-- **Bookings are not persisted** — booking details pass through the URL as query parameters and are not saved anywhere; closing the confirmation page loses the booking
-- **No payment integration** — pricing is calculated and displayed, but there's no checkout or payment gateway
-
-These are intentional simplifications for the scope of the internship project, not bugs.
 
 ## Roadmap
 
